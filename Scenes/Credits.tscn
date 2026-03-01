@@ -1,0 +1,89 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://Assets/Fonts/Text_font.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Assets/Fonts/04B_19__.TTF" type="DynamicFontData" id=3]
+[ext_resource path="res://Scripts/Credits.gd" type="Script" id=4]
+[ext_resource path="res://Assets/Sound effects/press_button.wav" type="AudioStream" id=5]
+[ext_resource path="res://Assets/Buttons/Close_button_hover.png" type="Texture" id=6]
+[ext_resource path="res://Assets/Buttons/Close_button_pressed.png" type="Texture" id=7]
+[ext_resource path="res://Assets/Buttons/Close_button.png" type="Texture" id=8]
+
+[sub_resource type="Gradient" id=1]
+offsets = PoolRealArray( 0, 0.795455, 1 )
+colors = PoolColorArray( 0.0666667, 0.580392, 0.760784, 1, 0.0578728, 0.499049, 0.65306, 1, 0.0509804, 0.435294, 0.568627, 1 )
+
+[sub_resource type="GradientTexture" id=2]
+gradient = SubResource( 1 )
+width = 600
+
+[sub_resource type="StyleBoxTexture" id=5]
+texture = ExtResource( 6 )
+region_rect = Rect2( 0, 0, 20, 20 )
+
+[sub_resource type="StyleBoxTexture" id=6]
+texture = ExtResource( 7 )
+region_rect = Rect2( 0, 0, 20, 20 )
+
+[sub_resource type="StyleBoxTexture" id=7]
+texture = ExtResource( 8 )
+region_rect = Rect2( 0, 0, 20, 20 )
+
+[sub_resource type="StyleBoxTexture" id=8]
+texture = ExtResource( 8 )
+region_rect = Rect2( 0, 0, 20, 20 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 80
+outline_size = 3
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 3 )
+
+[node name="Credits" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 4 )
+
+[node name="BG" type="TextureRect" parent="."]
+margin_top = 600.0
+margin_right = 600.0
+margin_bottom = 1624.0
+rect_rotation = 270.0
+texture = SubResource( 2 )
+expand = true
+
+[node name="Close_button" type="Button" parent="."]
+margin_left = 36.0
+margin_top = 34.0
+margin_right = 106.0
+margin_bottom = 104.0
+custom_styles/hover = SubResource( 5 )
+custom_styles/pressed = SubResource( 6 )
+custom_styles/focus = SubResource( 7 )
+custom_styles/normal = SubResource( 8 )
+
+[node name="Title" type="Label" parent="."]
+margin_left = 250.0
+margin_top = 52.0
+margin_right = 767.0
+margin_bottom = 133.0
+rect_pivot_offset = Vector2( 258, 40 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 3 )
+text = "Credits"
+align = 1
+
+[node name="Text" type="Label" parent="."]
+margin_left = 101.0
+margin_top = 248.0
+margin_right = 917.0
+margin_bottom = 353.0
+custom_fonts/font = ExtResource( 1 )
+text = "Game made in 48h for the GMTK game jam 2023, by Apmds"
+align = 1
+autowrap = true
+
+[node name="Button_sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 5 )
+bus = "sound_effects"
+
+[connection signal="pressed" from="Close_button" to="." method="_on_Close_button_pressed"]

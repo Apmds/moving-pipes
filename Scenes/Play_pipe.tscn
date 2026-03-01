@@ -1,0 +1,45 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Scenes/Pipe.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scripts/Play_pipe.gd" type="Script" id=2]
+[ext_resource path="res://Assets/Sound effects/hit_pipe.wav" type="AudioStream" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 3.5, 25.5 )
+
+[sub_resource type="RectangleShape2D" id=2]
+
+[node name="Play_pipe" type="Area2D"]
+scale = Vector2( 4, 4 )
+collision_layer = 2
+script = ExtResource( 2 )
+preview_mode = false
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="Up_pipe" parent="." instance=ExtResource( 1 )]
+position = Vector2( 0, -91 )
+rotation = 3.14159
+
+[node name="Down_pipe" parent="." instance=ExtResource( 1 )]
+position = Vector2( 0, 91 )
+
+[node name="Power-up" type="Sprite" parent="."]
+
+[node name="Power_up_area" type="Area2D" parent="."]
+
+[node name="Collision" type="CollisionShape2D" parent="Power_up_area"]
+shape = SubResource( 2 )
+
+[node name="Bird_position" type="Position2D" parent="."]
+position = Vector2( 20, 0 )
+
+[node name="Hit_pipe" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 3 )
+bus = "sound_effects"
+
+[connection signal="body_entered" from="." to="." method="_on_Play_pipe_body_entered"]
+[connection signal="body_entered" from="Up_pipe" to="." method="_on_Pipe_body_entered"]
+[connection signal="body_entered" from="Down_pipe" to="." method="_on_Pipe_body_entered"]
+[connection signal="body_entered" from="Power_up_area" to="." method="_on_Power_up_area_body_entered"]
