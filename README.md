@@ -6,3 +6,8 @@ You are the pipes and your objective is to defeat the bird that flaps (**NOT** f
 
 
 Play it on [itch](https://apmds.itch.io/moving-pipes).
+
+## Screenshots
+
+![start_page](Assets/Itch&#32;page/Start_menu.png)
+![game](Assets/Itch&#32;page/Game.png)
